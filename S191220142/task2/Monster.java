@@ -34,7 +34,7 @@ public class Monster implements Linable {
 
     @Override
     public String toString() {
-        //just for test
+        // just for test
         /*double rank = r * 0.299 + g * 0.587 + b * 0.114;
         int i = (int) rank;*/
         return "\033[48;2;" + this.r + ";" + this.g + ";" + this.b + ";38;2;0;0;0m " + " \033[0m";

@@ -18,6 +18,14 @@ class SelectSorter{
     void swap(int, int)
 }
 
+class QuickSorter{
+    int[][] a;
+    double[] grayLevel;
+    String plan = "";
+    void swap(int, int)
+    void quickSort(int, int)
+}
+
 class Boss{
     static Boss theBoss
     Sorter sorter
@@ -72,6 +80,7 @@ class getRandom{
 
 SelectSorter --|> Sorter
 BubbleSorter --|> Sorter
+QuickSorter --|> Sorter
 Monster --|> Linable
 Line *-- Position
 Position o-- Linable
