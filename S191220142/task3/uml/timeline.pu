@@ -12,14 +12,18 @@ entity  编写结果    as  writer  #Purple
 rgb -> rgb: setRgb + retRgb
 note left: 获取并返回Rgb
 
+rgb -> rgb: retRank
+note left: 返回颜色对应的Rank
+
 random -> random: getRandomRes
 note left: 获取随机数序列
 
 group 将Rgb值随机分给指定的小怪
     rgb -> random: 随机提取颜色
-    monster -> rgb: new Monster(r,g,b)
+    monster -> rgb: new Monster(r, g, b, rank)
     note right
-    将不同颜色的RGB
+    将不同颜色的RGB和
+    与颜色对应的Rank值
     随机分配给小怪
     endnote
 end
@@ -45,7 +49,7 @@ sorter -> matrix: load
 note right: 加载数据
 
 sorter -> sorter: sort
-note left: 进行排序
+note left: 进行排序(根据Rank)
 
 sorter -> sorter: getPlan
 note left: 获得排序结果
