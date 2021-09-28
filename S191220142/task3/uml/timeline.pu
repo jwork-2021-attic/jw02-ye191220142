@@ -1,0 +1,80 @@
+@startuml
+
+collections 256个小怪 as monster
+queue   256个小怪的矩阵  as  matrix
+actor   蛇精    as  theBoss   #Red
+control 排序    as  sorter  #Green
+entity  RGB颜色 as  rgb #Pink
+entity  随机数  as  random  #Gold
+entity  排队结果    as  log #Blue
+entity  编写结果    as  writer  #Purple
+
+rgb -> rgb: setRgb + retRgb
+note left: 获取并返回Rgb
+
+random -> random: getRandomRes
+note left: 获取随机数序列
+
+group 将Rgb值随机分给指定的小怪
+    rgb -> random: 随机提取颜色
+    monster -> rgb: new Monster(r,g,b)
+    note right
+    将不同颜色的RGB
+    随机分配给小怪
+    endnote
+end
+
+matrix -> monster : put
+note left
+将256个小怪
+排成16*16的矩阵
+endnote
+
+theBoss -> sorter : setSorter
+note left
+选择排序算法
+endnote
+
+theBoss -> matrix: matrixUp
+note right
+蛇精对妖怪们
+进行排队
+endnote
+
+sorter -> matrix: load
+note right: 加载数据
+
+sorter -> sorter: sort
+note left: 进行排序
+
+sorter -> sorter: getPlan
+note left: 获得排序结果
+
+theBoss -> sorter: parsePlan
+note left: 对排序按步骤进行拆分
+
+theBoss -> theBoss: execute
+note left: 执行步骤
+
+theBoss -> monster: swapPosition
+note left 
+让妖怪们按照步骤
+进行位置交换
+endnote
+
+matrix -> monster: toString
+note right
+将各个妖怪的颜色
+按照当前顺序进行展示
+endnote
+
+log -> matrix: toString
+note right 
+将每一次交换位置后的矩阵
+记录在结果中
+endnote
+
+writer -> log: write
+note right: 编写结果
+
+@enduml

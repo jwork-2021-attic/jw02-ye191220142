@@ -1,0 +1,82 @@
+@startuml
+
+class Sorter{
+    void load(int[][])
+    void sort()
+    String getPlan()
+}
+
+class BubbleSorter{
+    int[][] a
+    String plan
+    void swap(int, int)
+}
+
+class SelectSorter{
+    int[][] a
+    String plan
+    void swap(int, int)
+}
+
+class Boss{
+    static Boss theBoss
+    Sorter sorter
+    static Boss getTheBoss()
+    void setSorter(Sorter)
+    String lineUp(Line)
+    String[] parsePlan(String)
+    void execute(String)
+}
+
+class Linable{
+    void setPosition(Position)
+    Position getPosition()
+    int[] getColor()
+}
+
+class Monster{
+    final int r, g, b
+    final int[] rgb
+    static int index
+    static Monster[] monsters
+    Position position
+
+    static Monster getMonsterByColor(int[])
+    void swapPosition(Monster)
+}
+
+class Line{
+    Position[] positions
+    void put(Linable, int)
+    Linable get(int)
+    Linable[] toArray()
+}
+
+class Position{
+    Linable linable
+    void setLinable(Linable)
+}
+
+class getRgb{
+    int[][] rgb
+    File file
+    void setRgb()
+    int[][] retRgb()
+}
+
+class getRandom{
+    int[] source
+    int size
+    int[] getRandomRes()
+}
+
+SelectSorter --|> Sorter
+BubbleSorter --|> Sorter
+Monster --|> Linable
+Line *-- Position
+Position o-- Linable
+Monster o-- Position
+Boss o-- Line
+Boss o-- Sorter
+
+@enduml

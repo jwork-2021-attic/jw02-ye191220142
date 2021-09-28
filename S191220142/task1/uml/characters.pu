@@ -1,0 +1,59 @@
+@startuml
+
+class Sorter{
+    void load(int[])
+    void sort()
+    String getPlan()
+}
+
+class BubbleSorter{
+    int[] a
+    String plan
+    void swap(int, int)
+}
+
+class Geezer{
+    static Geezer theGeezer
+    Sorter sorter
+    static Geezer getTheGeezer()
+    void setSorter(Sorter)
+    String lineUp(Line)
+    String[] parsePlan(String)
+    void execute(String)
+}
+
+class Linable{
+    void setPosition(Position)
+    Position getPosition()
+    int getValue()
+}
+
+class Gourd{
+    final int r, g, b
+    Position position
+    static Gourd getGourdByRank(int)
+    int rank()
+    void swapPosition(Gourd)
+}
+
+class Line{
+    Position[] positions
+    void put(Linable, int)
+    Linable get(int)
+    Linable[] toArray()
+}
+
+class Position{
+    Linable linable
+    void setLinable(Linable)
+}
+
+BubbleSorter --|> Sorter
+Gourd --|> Linable
+Line *-- Position
+Position o-- Linable
+Geezer o-- Line
+Geezer o-- Sorter
+Gourd o-- Position
+
+@enduml

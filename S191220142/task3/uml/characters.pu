@@ -1,0 +1,94 @@
+@startuml
+
+class Sorter{
+    void load(int[])
+    void sort()
+    String getPlan()
+}
+
+class BubbleSorter{
+    int[] ranks
+    String plan
+    void swap(int, int)
+}
+
+class SelectSorter{
+    int[] ranks
+    String plan
+    void swap(int, int)
+}
+
+class QuickSorter{
+    int[] ranks
+    String plan
+    void swap(int, int)
+    void quickSort(int, int)
+}
+
+class Boss{
+    static Boss theBoss
+    Sorter sorter
+    static Boss getTheBoss()
+    void setSorter(Sorter)
+    String matrixUp(Matrix)
+    String[] parsePlan(String)
+    void execute(String)
+}
+
+class Linable{
+    void setPosition(Position)
+    Position getPosition()
+    int getValue()
+}
+
+class Monster{
+    final int r, g, b
+    final int[] rgb
+    final int rank
+    static int index
+    static Monster[] monsters
+    Position position
+
+    static Monster getMonsterByRank(int)
+    void swapPosition(Monster)
+}
+
+class Matrix{
+    Position[] positions
+    int row, col
+    void put(Linable, int, int)
+    Linable get(int, int)
+    Linable[] toArray()
+}
+
+class Position{
+    Linable linable
+    void setLinable(Linable)
+}
+
+class getRgb{
+    int[][] rgbs
+    int[] ranks
+    File file
+    void setRgb()
+    int[][] retRgb()
+    int[] retRank()
+}
+
+class getRandom{
+    int[] source
+    int size
+    int[] getRandomRes()
+}
+
+SelectSorter --|> Sorter
+BubbleSorter --|> Sorter
+QuickSorter --|> Sorter
+Monster --|> Linable
+Matrix *-- Position
+Position o-- Linable
+Monster o-- Position
+Boss o-- Matrix
+Boss o-- Sorter
+
+@enduml

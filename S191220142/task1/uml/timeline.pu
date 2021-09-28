@@ -1,0 +1,59 @@
+@startuml
+
+collections 七个葫芦娃 as gourd
+queue   七个葫芦娃的排列  as  line
+actor   老人    as  theGeezer   #Orange
+control 排序    as  sorter  #Green
+entity  排队结果    as  log #Blue
+entity  编写结果    as  writer  #Purple
+
+
+line -> gourd : put
+note left: 将七个葫芦娃先排成一行
+
+theGeezer -> sorter : setSorter
+note left
+选择排序算法
+（冒泡排序）
+endnote
+
+theGeezer -> line: lineUp
+note right
+老人对葫芦娃
+进行排队
+endnote
+
+sorter -> line: load
+note right: 加载数据
+
+sorter -> sorter: sort
+note left: 进行排序
+
+sorter -> sorter: getPlan
+note left: 获得排序结果
+
+theGeezer -> sorter: parsePlan
+note left: 对排序按步骤进行拆分
+
+theGeezer -> theGeezer: execute
+note left: 执行步骤
+
+theGeezer -> gourd: swapPosition
+note left 
+按照步骤
+对葫芦娃进行位置交换
+endnote
+
+line -> gourd: toString
+note right: 将各个葫芦娃打印在队列中
+
+log -> line: toString
+note right 
+将每一次交换位置后的队列
+记录在结果中
+endnote
+
+writer -> log: write
+note right: 编写结果
+
+@enduml
